@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+  ],
+  "settings": {
+    "workbench.colorTheme": "Community Material Theme Ocean High Contrast",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.preferredDarkColorTheme": "Solarized Light",
+    "editor.fontFamily": "'Fira Code', 'Noto Serif SC', Consolas, 'Courier New', monospace"
+  }
+}

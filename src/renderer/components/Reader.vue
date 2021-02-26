@@ -1,20 +1,20 @@
 <!--
  * @Date: 2021-02-20 18:27:52
  * @LastEditors: Jecosine
- * @LastEditTime: 2021-02-21 17:28:09
+ * @LastEditTime: 2021-02-21 20:22:41
 -->
 <template>
   <el-container id="reader-container">
     <el-main id="reader-main">
       <Word word="currentWord"/>
-      <div id="unfold-button"></div>
-      <div id="reader-aside" v-show="unfold">
+      <div id="unfold-button">
         <font-awesome-icon :icon="['fas',unfold ? 'arrow-right' : 'arrow-right']"></font-awesome-icon>
       </div>
-      <!-- catalog -->
-      <div class="catalog-container">
+      <div id="reader-aside" v-show="unfold">
         
       </div>
+      <!-- catalog -->
+      
 
     </el-main>
     
@@ -23,19 +23,48 @@
 
 <script>
 export default {
+  props: {
+    name: {
+      type: String,
+      required: true
+    }
+  },
   data () {
     return {
       currentWord: '',
-      unfold: true
+      unfold: true,
+      notebookData: {}
     }
   },
-  methods: {},
+  methods: {
+    async fetchNotebook () {
+      let that = this
+      if (this.name) {
+        this.notebookData = await this.$db.models.Notebook.findOne({
+          where: {
+            name: that.name
+          },
+          attributes: ['id', 'name', 'count']
+        })
+      }
+    }
+  },
+  watch: {
+    $route (to, from) {
+      if (to.path !== from.path) {
+        this.fetchNotebook()
+      }
+    }
+  },
   mounted () {
     // todo render aside catalog
     // ...
     // test
   },
   created () {
+    let that = this
+    // todo get notebook data
+    this.fetchNotebook()
     // todo get last record
     // ...
   }
@@ -62,5 +91,9 @@ export default {
   width: 10rem;
   height: 100%;
   background-color: beige;
+}
+.catalog-container {
+  
+  height: 100%;
 }
 </style>

@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-02-03 07:02:08
  * @LastEditors: Jecosine
- * @LastEditTime: 2021-02-21 13:08:22
+ * @LastEditTime: 2021-02-21 21:32:53
 -->
 <template>
   <el-container id="main-container">
@@ -71,7 +71,9 @@
             <router-view />
           </transition>
         </el-main>
-        <el-footer id="footer-container" height="2.125rem"></el-footer>
+        <el-footer id="footer-container" height="2.125rem">
+          <footerbar />
+        </el-footer>
       </el-container>
     </el-container>
   </el-container>
@@ -84,7 +86,8 @@ import CommandExecuteException from '../exceptions/CommandExecuteException'
 
 export default {
   components: {
-    titlebar: require('@/components/partial/Titlebar').default
+    titlebar: require('@/components/partial/Titlebar').default,
+    footerbar: resolve => { require(['@/components/partial/Footer'], resolve) }
   },
   data () {
     return {

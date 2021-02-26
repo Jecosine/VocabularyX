@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-02-03 06:34:40
  * @LastEditors: Jecosine
- * @LastEditTime: 2021-02-21 11:49:13
+ * @LastEditTime: 2021-02-21 18:43:18
  */
 
 import Vue from 'vue'
@@ -106,6 +106,12 @@ export default new Router({
           path: '/notebookdetail/:name',
           name: 'notebookdetail',
           component: resolve => { require(['@/components/NotebookDetail'], resolve) }
+        },
+        {
+          path: '/reader/:name',
+          name: 'reader',
+          props: true,
+          component: resolve => { require(['@/components/Reader'], resolve) }
         }
       ]
     }
